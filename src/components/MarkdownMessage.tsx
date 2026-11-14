@@ -15,9 +15,9 @@ function CodeBlock({ lang, code }: { lang: string; code: string }) {
   return (
     <div
       dir="ltr"
-      className="my-3 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0d0d0d] text-left"
+      className="my-3 overflow-hidden rounded-xl border border-white/[0.08] bg-[#09090c] text-left"
     >
-      <div className="flex items-center justify-between bg-[#1a1a1a] px-3.5 py-1.5 text-[11px] text-zinc-400">
+      <div className="flex items-center justify-between border-b border-white/[0.06] bg-[#121217] px-3.5 py-1.5 text-[11px] text-zinc-400">
         <span className="font-mono">{lang || "code"}</span>
         <button
           type="button"

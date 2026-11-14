@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useMemo, useState } from "react";
 import {
@@ -132,7 +132,7 @@ export default function AdminPanelTool() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <div>
           <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
             <ShieldCheck className="h-4 w-4 text-[#d97757]" />
@@ -181,7 +181,7 @@ export default function AdminPanelTool() {
           return (
             <div
               key={p.id}
-              className="flex flex-col justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-4"
+              className="flex flex-col justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-4"
             >
               <div className="flex items-center justify-between gap-2">
                 <div>
@@ -227,7 +227,7 @@ export default function AdminPanelTool() {
                       envActive ? "مفتاح السيرفر (.env)" : "الصق API Key"
                     }
                     dir="ltr"
-                    className="w-full rounded-xl border border-white/10 bg-[#171717] py-2 pl-9 pr-3 text-xs text-zinc-100 placeholder:text-zinc-500 focus:border-[#d97757]/60 focus:outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] py-2 pl-9 pr-3 text-xs text-zinc-100 placeholder:text-zinc-500 focus:border-[#d97757]/60 focus:outline-none"
                   />
                   <button
                     type="button"
@@ -247,7 +247,7 @@ export default function AdminPanelTool() {
                 <button
                   onClick={() => handleDiscover(p.id)}
                   disabled={isLoading || (!keys[p.id]?.trim() && !envActive)}
-                  className="flex shrink-0 items-center gap-1.5 rounded-xl bg-white px-3.5 py-2 text-xs font-semibold text-[#171717] transition hover:bg-zinc-200 disabled:opacity-35"
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl bg-[#d97757] px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-[#e58868] disabled:opacity-35"
                 >
                   <RefreshCw
                     className={`h-3.5 w-3.5 ${isLoading ? "animate-spin" : ""}`}
@@ -261,7 +261,7 @@ export default function AdminPanelTool() {
       </div>
 
       {/* Role Assignments */}
-      <div className="rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <h3 className="mb-4 flex items-center gap-2 text-xs font-semibold text-zinc-100">
           <Cpu className="h-4 w-4 text-[#d97757]" />
           توزيع الأدوار على الموديلات ({allModels.length} موديل متاح)
@@ -271,14 +271,14 @@ export default function AdminPanelTool() {
           {ROLE_LABELS.map((r) => (
             <div
               key={r.key}
-              className="space-y-1.5 rounded-xl border border-white/[0.06] bg-[#171717] p-3"
+              className="space-y-1.5 rounded-xl border border-white/[0.06] bg-[#0b0b0e] p-3"
             >
               <div className="text-xs font-medium text-zinc-200">{r.title}</div>
               <div className="text-[11px] text-zinc-500">{r.hint}</div>
               <select
                 value={encodeRef(roles[r.key])}
                 onChange={(e) => setRoleModel(r.key, decodeRef(e.target.value))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-[#242424] px-2.5 py-2 text-xs text-zinc-100 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-white/10 bg-[#121217] px-2.5 py-2 text-xs text-zinc-100 focus:outline-none"
               >
                 <option value="">-- اختر موديلاً --</option>
                 {allModels.map((m) => (
@@ -297,7 +297,7 @@ export default function AdminPanelTool() {
 
       {/* Discovered Models Catalog */}
       {allModels.length > 0 && (
-        <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+        <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h3 className="text-xs font-semibold text-zinc-100">
               كتالوج الموديلات المكتشفة (أعضاء مجلس الخبراء حتى 5)
@@ -308,7 +308,7 @@ export default function AdminPanelTool() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="بحث باسم الموديل..."
-                className="rounded-full border border-white/10 bg-[#171717] px-3.5 py-1.5 text-xs text-zinc-200 focus:outline-none"
+                className="rounded-full border border-white/10 bg-[#0b0b0e] px-3.5 py-1.5 text-xs text-zinc-200 focus:outline-none"
               />
               <div className="flex flex-wrap gap-1">
                 {TAG_FILTERS.map((t) => (
@@ -317,8 +317,8 @@ export default function AdminPanelTool() {
                     onClick={() => setTagFilter(t.id)}
                     className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
                       tagFilter === t.id
-                        ? "bg-white text-[#171717]"
-                        : "bg-[#171717] text-zinc-400 hover:text-zinc-200"
+                        ? "bg-[#d97757] text-white"
+                        : "bg-[#0b0b0e] text-zinc-400 hover:text-zinc-200"
                     }`}
                   >
                     {t.label}
@@ -339,7 +339,7 @@ export default function AdminPanelTool() {
                   className={`flex cursor-pointer items-start justify-between gap-2 rounded-xl border p-3 text-xs transition ${
                     checked
                       ? "border-[#d97757]/60 bg-[#d97757]/10"
-                      : "border-white/[0.06] bg-[#171717] hover:border-white/15"
+                      : "border-white/[0.06] bg-[#0b0b0e] hover:border-white/15"
                   }`}
                 >
                   <div className="min-w-0 flex-1">

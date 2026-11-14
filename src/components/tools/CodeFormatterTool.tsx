@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import {
@@ -160,7 +160,7 @@ export default function CodeFormatterTool() {
             className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition ${
               tab === "ai-coder"
                 ? "bg-[#d97757] text-white"
-                : "bg-[#2a2a2a] text-zinc-300 hover:bg-[#333333]"
+                : "bg-[#16161d] text-zinc-300 hover:bg-[#1e1e27]"
             }`}
           >
             <Terminal className="h-3.5 w-3.5" />
@@ -170,8 +170,8 @@ export default function CodeFormatterTool() {
             onClick={() => setTab("formatter")}
             className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition ${
               tab === "formatter"
-                ? "bg-white text-[#171717]"
-                : "bg-[#2a2a2a] text-zinc-300 hover:bg-[#333333]"
+                ? "bg-[#d97757] text-white"
+                : "bg-[#16161d] text-zinc-300 hover:bg-[#1e1e27]"
             }`}
           >
             <Braces className="h-3.5 w-3.5" />
@@ -182,7 +182,7 @@ export default function CodeFormatterTool() {
 
       {tab === "formatter" ? (
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+          <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
             <label className="block text-xs font-medium text-zinc-300">
               النص / JSON / Base64 / JWT
             </label>
@@ -191,7 +191,7 @@ export default function CodeFormatterTool() {
               value={rawInput}
               onChange={(e) => setRawInput(e.target.value)}
               dir="ltr"
-              className="w-full rounded-xl border border-white/10 bg-[#171717] p-3 font-mono text-xs text-zinc-100 focus:border-[#d97757]/60 focus:outline-none"
+              className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] p-3 font-mono text-xs text-zinc-100 focus:border-[#d97757]/60 focus:outline-none"
             />
             <div className="flex flex-wrap gap-2">
               <button
@@ -232,7 +232,7 @@ export default function CodeFormatterTool() {
             )}
           </div>
 
-          <div className="flex flex-col space-y-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+          <div className="flex flex-col space-y-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-zinc-300">
                 النتيجة الفورية
@@ -253,7 +253,7 @@ export default function CodeFormatterTool() {
             </div>
             <pre
               dir="ltr"
-              className="min-h-[300px] flex-1 overflow-auto rounded-xl border border-white/10 bg-[#171717] p-4 font-mono text-xs text-emerald-300"
+              className="min-h-[300px] flex-1 overflow-auto rounded-xl border border-white/10 bg-[#0b0b0e] p-4 font-mono text-xs text-emerald-300"
             >
               {formattedOutput || "// اختر عملية من الأزرار لعرض النتيجة فوراً"}
             </pre>
@@ -261,7 +261,7 @@ export default function CodeFormatterTool() {
         </div>
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+          <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex gap-1.5">
                 {(
@@ -277,7 +277,7 @@ export default function CodeFormatterTool() {
                     className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
                       aiTask === id
                         ? "bg-[#d97757] text-white"
-                        : "bg-[#171717] text-zinc-300 hover:bg-white/[0.08]"
+                        : "bg-[#0b0b0e] text-zinc-300 hover:bg-white/[0.08]"
                     }`}
                   >
                     {label}
@@ -288,7 +288,7 @@ export default function CodeFormatterTool() {
               <select
                 value={selectedModel}
                 onChange={(e) => setSelectedModel(e.target.value)}
-                className="max-w-[220px] rounded-full border border-white/10 bg-[#171717] px-3 py-1.5 text-xs text-zinc-200 focus:outline-none"
+                className="max-w-[220px] rounded-full border border-white/10 bg-[#0b0b0e] px-3 py-1.5 text-xs text-zinc-200 focus:outline-none"
               >
                 <option value="auto">
                   تلقائي ({roles.coder?.model || "Auto"})
@@ -309,13 +309,13 @@ export default function CodeFormatterTool() {
               value={codePrompt}
               onChange={(e) => setCodePrompt(e.target.value)}
               placeholder="الصق الكود للمراجعة أو اكتب وصف الميزة البرمجية المطلوبة..."
-              className="w-full rounded-xl border border-white/10 bg-[#171717] p-3.5 font-mono text-xs leading-6 text-zinc-100 placeholder:text-zinc-500 focus:border-[#d97757]/60 focus:outline-none"
+              className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] p-3.5 font-mono text-xs leading-6 text-zinc-100 placeholder:text-zinc-500 focus:border-[#d97757]/60 focus:outline-none"
             />
 
             <button
               onClick={handleRunAiCoder}
               disabled={aiLoading || !codePrompt.trim()}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-white py-2.5 text-xs font-semibold text-[#171717] transition hover:bg-zinc-200 disabled:opacity-40"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-l from-[#d97757] to-[#e48667] py-2.5 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-40"
             >
               {aiLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -326,14 +326,14 @@ export default function CodeFormatterTool() {
             </button>
           </div>
 
-          <div className="flex flex-col gap-3 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+          <div className="flex flex-col gap-3 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-zinc-300">
                 المخرجات والمراجعة
               </span>
               {aiMeta && (
                 <span
-                  className="rounded-full bg-[#171717] px-2.5 py-0.5 font-mono text-[11px] text-[#e69274]"
+                  className="rounded-full bg-[#0b0b0e] px-2.5 py-0.5 font-mono text-[11px] text-[#e69274]"
                   dir="ltr"
                 >
                   {aiMeta}
@@ -348,7 +348,7 @@ export default function CodeFormatterTool() {
               </div>
             )}
 
-            <div className="min-h-[340px] flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-white/10 bg-[#171717] p-4 text-xs leading-6 text-zinc-200">
+            <div className="min-h-[340px] flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-white/10 bg-[#0b0b0e] p-4 text-xs leading-6 text-zinc-200">
               {aiResponse ||
                 (aiLoading
                   ? "جاري تحليل الكود..."

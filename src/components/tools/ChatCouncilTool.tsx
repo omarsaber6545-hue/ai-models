@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
+  ArrowUpLeft,
   AlertCircle,
   Loader2,
   Copy,
@@ -591,14 +592,14 @@ export default function ChatCouncilTool({
 
   const composerBox = (
     <div className="w-full">
-      <div className="rounded-[26px] border border-white/[0.08] bg-[#2f2f2f] p-3.5 shadow-xl shadow-black/25">
+      <div className="rounded-2xl border border-white/[0.1] bg-[#131318]/95 p-3.5 shadow-2xl shadow-black/50 backdrop-blur-xl transition focus-within:border-[#d97757]/55 focus-within:shadow-[0_0_0_3px_rgba(217,119,87,0.12)]">
         {attachments.length > 0 && (
           <div className="mb-2.5 flex flex-wrap gap-2 border-b border-white/[0.07] pb-2.5">
             {attachments.map((att) =>
               att.kind === "image" && att.dataUrl ? (
                 <div
                   key={att.id}
-                  className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/15 bg-black/30"
+                  className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/15 bg-black/40"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -618,9 +619,9 @@ export default function ChatCouncilTool({
               ) : (
                 <div
                   key={att.id}
-                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-[#212121] px-3 py-1.5 text-xs text-zinc-200"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-[#0b0b0e] px-3 py-1.5 text-xs text-zinc-200"
                 >
-                  <FileText className="h-3.5 w-3.5 shrink-0 text-zinc-400" />
+                  <FileText className="h-3.5 w-3.5 shrink-0 text-[#e58b6c]" />
                   <span className="max-w-[140px] truncate" dir="ltr">
                     {att.name}
                   </span>
@@ -658,21 +659,21 @@ export default function ChatCouncilTool({
           }}
           placeholder={
             mode === "chat"
-              ? "اسأل أي شيء، أو اسحب وألصق صوراً وملفات هنا..."
+              ? "اكتب رسالتك، أو اسحب وألصق صوراً وملفات هنا..."
               : "اكتب سؤالك لمجلس الخبراء..."
           }
-          className="max-h-40 w-full resize-none bg-transparent px-1.5 py-1 text-sm leading-6 text-[#ececec] placeholder:text-zinc-400 focus:outline-none"
+          className="max-h-40 w-full resize-none bg-transparent px-1.5 py-1 text-sm leading-6 text-[#f4f4f5] placeholder:text-zinc-500 focus:outline-none"
         />
 
-        <div className="mt-2 flex flex-wrap items-center justify-between gap-2 pt-1">
+        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.06] pt-2.5">
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="inline-flex h-8 items-center gap-1.5 rounded-full border border-white/10 px-3 text-xs text-zinc-200 transition hover:bg-white/[0.08] hover:text-white"
+              className="inline-flex h-8 items-center gap-1.5 rounded-full border border-white/[0.09] bg-[#0b0b0e] px-3 text-xs text-zinc-300 transition hover:border-white/20 hover:text-white"
               title="رفع صورة أو ملف"
             >
-              <Plus className="h-3.5 w-3.5" />
+              <Plus className="h-3.5 w-3.5 text-[#e58b6c]" />
               <span>صورة / ملف</span>
             </button>
 
@@ -681,8 +682,8 @@ export default function ChatCouncilTool({
               onClick={() => setMode(mode === "chat" ? "council" : "chat")}
               className={`inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-xs transition ${
                 mode === "council"
-                  ? "border-[#d97757]/50 bg-[#d97757]/20 text-[#f2a88f]"
-                  : "border-white/10 text-zinc-300 hover:bg-white/[0.08] hover:text-white"
+                  ? "border-[#d97757]/50 bg-[#d97757]/18 text-[#f2a88f]"
+                  : "border-white/[0.09] bg-[#0b0b0e] text-zinc-300 hover:border-white/20 hover:text-white"
               }`}
             >
               <Scale className="h-3.5 w-3.5" />
@@ -694,7 +695,7 @@ export default function ChatCouncilTool({
                 <select
                   value={selectedOverride}
                   onChange={(e) => setSelectedOverride(e.target.value)}
-                  className="h-8 max-w-[185px] appearance-none rounded-full border border-white/10 bg-[#242424] pl-7 pr-3 text-xs text-zinc-200 focus:outline-none"
+                  className="h-8 max-w-[185px] appearance-none rounded-full border border-white/[0.09] bg-[#0b0b0e] pl-7 pr-3 text-xs text-zinc-300 focus:border-[#d97757]/50 focus:outline-none"
                 >
                   <option value="auto">
                     تلقائي ({roles.fastChat?.model || "Auto"})
@@ -717,7 +718,7 @@ export default function ChatCouncilTool({
             <button
               type="button"
               onClick={handleStop}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#171717] transition hover:bg-zinc-200"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-[#d97757] text-white shadow-md shadow-[#d97757]/30 transition hover:bg-[#e58868]"
               title="إيقاف"
             >
               <Square className="h-3.5 w-3.5 fill-current" />
@@ -729,7 +730,7 @@ export default function ChatCouncilTool({
                 mode === "chat" ? handleSendChat() : handleRunCouncil()
               }
               disabled={!input.trim() && attachments.length === 0}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#171717] transition hover:bg-zinc-200 disabled:bg-[#525252] disabled:text-[#212121]"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-l from-[#d97757] to-[#e48667] text-white shadow-md shadow-[#d97757]/25 transition hover:brightness-110 disabled:bg-zinc-800 disabled:bg-none disabled:text-zinc-500 disabled:shadow-none"
               title="إرسال"
             >
               <ArrowUp className="h-4 w-4" />
@@ -764,7 +765,7 @@ export default function ChatCouncilTool({
       {previewImage && (
         <div
           onClick={() => setPreviewImage(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
         >
           <button
             onClick={() => setPreviewImage(null)}
@@ -776,15 +777,15 @@ export default function ChatCouncilTool({
           <img
             src={previewImage}
             alt="Preview"
-            className="max-h-[88vh] max-w-[92vw] rounded-2xl"
+            className="max-h-[88vh] max-w-[92vw] rounded-2xl border border-white/10"
           />
         </div>
       )}
 
       {/* Drag & Drop Overlay */}
       {isDragging && (
-        <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center bg-black/70">
-          <div className="rounded-2xl border border-dashed border-white/30 bg-[#2a2a2a] px-8 py-6 text-sm font-medium text-white">
+        <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center bg-black/75 backdrop-blur-sm">
+          <div className="rounded-2xl border border-dashed border-[#d97757]/60 bg-[#121217] px-8 py-6 text-sm font-medium text-white shadow-2xl">
             أفلت الصور أو الملفات هنا للإرفاق
           </div>
         </div>
@@ -804,16 +805,16 @@ export default function ChatCouncilTool({
         }}
       />
 
-      {/* Empty Centered ChatGPT/Claude State */}
+      {/* Empty Centered Studio Canvas */}
       {isEmpty && !loading && !loadingChat ? (
-        <div className="flex flex-1 flex-col items-center justify-center px-4 pb-12">
-          <div className="w-full max-w-[760px] space-y-6">
+        <div className="bg-obsidian-grid flex flex-1 flex-col items-center justify-center px-4 pb-12">
+          <div className="w-full max-w-[780px] space-y-6">
             {!hasAnyKey && allModels.length === 0 && (
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#d97757]/35 bg-[#d97757]/10 px-4 py-3 text-xs text-zinc-200">
+              <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#d97757]/35 bg-[#d97757]/10 px-4 py-3 text-xs text-zinc-200 backdrop-blur-sm">
                 <span>أضف مفتاح API واسحب الموديلات للبدء في الدردشة.</span>
                 <button
                   onClick={onGoAdmin}
-                  className="shrink-0 rounded-full bg-[#d97757] px-3.5 py-1 text-xs font-semibold text-white hover:bg-[#c56647]"
+                  className="shrink-0 rounded-full bg-[#d97757] px-3.5 py-1 text-xs font-semibold text-white transition hover:bg-[#e58868]"
                 >
                   إضافة مفتاح
                 </button>
@@ -827,10 +828,14 @@ export default function ChatCouncilTool({
               </div>
             )}
 
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <div className="space-y-2 text-center">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-[#121217] px-3 py-1 text-[11px] text-zinc-400">
+                <Sparkles className="h-3 w-3 text-[#e58b6c]" />
+                <span>{mode === "chat" ? "محادثة ذكية" : "مجلس الخبراء"}</span>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 {mode === "chat"
-                  ? "كيف أقدر أساعدك النهاردة؟"
+                  ? "ابدأ بسؤال أو ارفع ملفاتك للتحليل"
                   : `مجلس الخبراء (${councilMembers.length} موديلات)`}
               </h2>
             </div>
@@ -838,14 +843,15 @@ export default function ChatCouncilTool({
             {composerBox}
 
             {mode === "chat" && (
-              <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="grid gap-2.5 sm:grid-cols-2">
                 {STARTER_PROMPTS.map((q) => (
                   <button
                     key={q}
                     onClick={() => setInput(q)}
-                    className="rounded-full border border-white/[0.08] bg-[#2a2a2a]/60 px-3.5 py-1.5 text-xs text-zinc-300 transition hover:bg-[#2f2f2f] hover:text-white"
+                    className="studio-card group flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-right text-xs text-zinc-300 transition hover:border-[#d97757]/40 hover:bg-[#17171e] hover:text-white"
                   >
-                    {q}
+                    <span className="truncate">{q}</span>
+                    <ArrowUpLeft className="h-3.5 w-3.5 shrink-0 text-zinc-500 transition group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#e58b6c]" />
                   </button>
                 ))}
               </div>
@@ -856,7 +862,7 @@ export default function ChatCouncilTool({
         <>
           {/* Conversation Stream */}
           <div className="flex-1 overflow-y-auto px-4">
-            <div className="mx-auto max-w-[760px] py-6">
+            <div className="mx-auto max-w-[780px] py-6">
               {error && (
                 <div className="mb-4 flex items-center gap-2 rounded-2xl border border-rose-500/35 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-200">
                   <AlertCircle className="h-4 w-4 shrink-0" />
@@ -875,7 +881,7 @@ export default function ChatCouncilTool({
                   {messages.map((m, idx) =>
                     m.role === "user" ? (
                       <div key={idx} className="flex justify-start">
-                        <div className="max-w-[82%] space-y-2.5 rounded-3xl bg-[#2f2f2f] px-5 py-3 text-[15px] leading-7 text-[#ececec]">
+                        <div className="max-w-[84%] space-y-2.5 rounded-2xl border border-white/[0.08] bg-[#16161d] px-5 py-3.5 text-[15px] leading-7 text-[#f4f4f5] shadow-sm">
                           {m.attachments && m.attachments.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                               {m.attachments.map((att) =>
@@ -896,9 +902,9 @@ export default function ChatCouncilTool({
                                 ) : (
                                   <div
                                     key={att.id}
-                                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#212121] px-3 py-1.5 text-xs text-zinc-200"
+                                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#0b0b0e] px-3 py-1.5 text-xs text-zinc-200"
                                   >
-                                    <FileText className="h-3.5 w-3.5 shrink-0 text-zinc-400" />
+                                    <FileText className="h-3.5 w-3.5 shrink-0 text-[#e58b6c]" />
                                     <span className="max-w-[160px] truncate" dir="ltr">
                                       {att.name}
                                     </span>
@@ -917,20 +923,20 @@ export default function ChatCouncilTool({
                       </div>
                     ) : (
                       <div key={idx} className="group flex items-start gap-3.5">
-                        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#2a2a2a]">
-                          <Sparkles className="h-3.5 w-3.5 text-[#d97757]" />
+                        <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[#d97757]/30 bg-[#121217]">
+                          <Sparkles className="h-3.5 w-3.5 text-[#e58b6c]" />
                         </div>
-                        <div className="min-w-0 flex-1 space-y-2">
+                        <div className="min-w-0 flex-1 space-y-2 rounded-2xl border border-white/[0.05] bg-[#101014]/70 px-4 py-3">
                           {m.content ? (
                             <MarkdownMessage content={m.content} />
                           ) : (
                             <span className="inline-flex items-center gap-2 text-sm text-zinc-400">
-                              <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                              جاري التفكير...
+                              <Loader2 className="h-3.5 w-3.5 animate-spin text-[#d97757]" />
+                              جاري التحليل والكتابة...
                             </span>
                           )}
                           {m.content && (
-                            <div className="flex items-center gap-3 pt-1 text-[11px] text-zinc-500">
+                            <div className="flex items-center gap-3 border-t border-white/[0.05] pt-2 text-[11px] text-zinc-500">
                               <button
                                 onClick={() => copyMsg(idx, m.content)}
                                 className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-zinc-400 transition hover:bg-white/[0.06] hover:text-zinc-200"
@@ -958,13 +964,13 @@ export default function ChatCouncilTool({
               {mode === "council" && councilResult && (
                 <div className="space-y-5 pb-6">
                   {councilResult.verdict && (
-                    <div className="rounded-2xl border border-[#d97757]/40 bg-[#d97757]/[0.07] p-5">
-                      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                        <span className="text-sm font-semibold text-[#e69274]">
+                    <div className="rounded-2xl border border-[#d97757]/40 bg-gradient-to-b from-[#d97757]/[0.1] to-[#121217] p-5 shadow-lg">
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-[#d97757]/20 pb-3">
+                        <span className="text-sm font-semibold text-[#f2a88f]">
                           خلاصة مجلس الخبراء
                         </span>
                         <span
-                          className="rounded-full bg-black/25 px-2.5 py-0.5 font-mono text-[11px] text-zinc-300"
+                          className="rounded-full border border-white/10 bg-[#0b0b0e] px-2.5 py-0.5 font-mono text-[11px] text-zinc-300"
                           dir="ltr"
                         >
                           {councilResult.verdict.provider} ·{" "}
@@ -984,13 +990,13 @@ export default function ChatCouncilTool({
                     {councilResult.members.map((m, idx) => (
                       <div
                         key={idx}
-                        className="rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-4"
+                        className="studio-card rounded-2xl p-4"
                       >
                         <div className="mb-2 flex items-center justify-between border-b border-white/[0.06] pb-2 text-xs text-zinc-400">
-                          <span className="truncate font-mono" dir="ltr">
+                          <span className="truncate font-mono text-zinc-200" dir="ltr">
                             {m.model}
                           </span>
-                          <span className="font-mono" dir="ltr">
+                          <span className="font-mono text-[#e58b6c]" dir="ltr">
                             {m.latencyMs}ms
                           </span>
                         </div>
@@ -1009,9 +1015,9 @@ export default function ChatCouncilTool({
             </div>
           </div>
 
-          {/* Bottom Docked ChatGPT/Claude Composer */}
-          <div className="shrink-0 px-4 pb-4 pt-2">
-            <div className="mx-auto max-w-[760px]">
+          {/* Bottom Docked Studio Composer */}
+          <div className="shrink-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent px-4 pb-4 pt-2">
+            <div className="mx-auto max-w-[780px]">
               {composerBox}
               <p className="mt-2 text-center text-[11px] text-zinc-500">
                 يتم حفظ المحادثات والمرفقات تلقائياً في سجل حسابك

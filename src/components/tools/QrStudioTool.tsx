@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import QRCode from "qrcode";
@@ -161,7 +161,7 @@ export default function QrStudioTool() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {/* QR Generator */}
-      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <div className="flex items-center justify-between">
           <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
             <QrCode className="h-4 w-4 text-emerald-400" />
@@ -177,7 +177,7 @@ export default function QrStudioTool() {
           value={qrInput}
           onChange={(e) => setQrInput(e.target.value)}
           placeholder="اكتب رابطاً أو نصاً أو بيانات WiFi..."
-          className="w-full rounded-xl border border-white/10 bg-[#171717] p-3 text-xs leading-6 text-zinc-100 focus:border-emerald-500/50 focus:outline-none"
+          className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] p-3 text-xs leading-6 text-zinc-100 focus:border-emerald-500/50 focus:outline-none"
         />
 
         <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-300">
@@ -202,7 +202,7 @@ export default function QrStudioTool() {
         </div>
 
         {qrDataUrl && (
-          <div className="flex flex-col items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#171717] p-6">
+          <div className="flex flex-col items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#0b0b0e] p-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={qrDataUrl}
@@ -212,14 +212,14 @@ export default function QrStudioTool() {
             <div className="flex gap-2">
               <button
                 onClick={downloadPng}
-                className="flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#171717] hover:bg-zinc-200"
+                className="flex items-center gap-1.5 rounded-full bg-[#d97757] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#e58868]"
               >
                 <Download className="h-3.5 w-3.5" />
                 تحميل PNG
               </button>
               <button
                 onClick={downloadSvg}
-                className="flex items-center gap-1.5 rounded-full border border-white/15 bg-[#2a2a2a] px-4 py-1.5 text-xs font-medium text-zinc-200 hover:bg-[#333333]"
+                className="flex items-center gap-1.5 rounded-full border border-white/15 bg-[#16161d] px-4 py-1.5 text-xs font-medium text-zinc-200 hover:bg-[#1e1e27]"
               >
                 <Download className="h-3.5 w-3.5" />
                 تحميل SVG
@@ -230,7 +230,7 @@ export default function QrStudioTool() {
       </div>
 
       {/* QR Reader */}
-      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <div className="flex items-center justify-between">
           <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
             <ScanLine className="h-4 w-4 text-[#d97757]" />
@@ -238,7 +238,7 @@ export default function QrStudioTool() {
           </h2>
         </div>
 
-        <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/15 bg-[#171717]/80 p-8 text-center transition hover:border-emerald-500/50">
+        <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/15 bg-[#0b0b0e]/85 p-8 text-center transition hover:border-emerald-500/50">
           <Upload className="mb-2 h-6 w-6 text-emerald-400" />
           <span className="text-xs font-medium text-zinc-200">
             ارفع صورة تحتوي على رمز QR لقراءته فوراً
@@ -261,7 +261,7 @@ export default function QrStudioTool() {
         )}
 
         {decodedText && (
-          <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#171717] p-4">
+          <div className="space-y-3 rounded-2xl border border-white/[0.08] bg-[#0b0b0e] p-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-emerald-400">
                 المحتوى المقروء:
@@ -279,7 +279,7 @@ export default function QrStudioTool() {
               </button>
             </div>
             <div
-              className="break-all rounded-xl bg-[#242424] p-3 font-mono text-xs text-zinc-100"
+              className="break-all rounded-xl bg-[#121217] p-3 font-mono text-xs text-zinc-100"
               dir="ltr"
             >
               {decodedText}

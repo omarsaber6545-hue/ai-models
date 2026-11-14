@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import {
@@ -176,18 +176,18 @@ export default function VisionDocTool() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="space-y-4 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <div className="flex items-center justify-between">
           <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
             <FileImage className="h-4 w-4 text-[#d97757]" />
             رفع الصورة أو المستند
           </h2>
-          <span className="rounded-full bg-[#171717] px-2.5 py-0.5 text-[11px] text-zinc-400">
+          <span className="rounded-full bg-[#0b0b0e] px-2.5 py-0.5 text-[11px] text-zinc-400">
             ضغط تلقائي &lt; 4.5MB
           </span>
         </div>
 
-        <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/15 bg-[#171717]/80 p-6 text-center transition hover:border-[#d97757]/60">
+        <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/15 bg-[#0b0b0e]/85 p-6 text-center transition hover:border-[#d97757]/60">
           <Upload className="mb-2 h-6 w-6 text-[#d97757]" />
           <span className="text-xs font-medium text-zinc-200">
             {fileName || "اضغط لاختيار صورة (فاتورة، لقطة شاشة، مستند)"}
@@ -204,7 +204,7 @@ export default function VisionDocTool() {
         </label>
 
         {imageUrl && (
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#171717]">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0b0b0e]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl}
@@ -219,7 +219,7 @@ export default function VisionDocTool() {
           <select
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-[#171717] px-3 py-2 text-xs text-zinc-200 focus:outline-none"
+            className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] px-3 py-2 text-xs text-zinc-200 focus:outline-none"
           >
             <option value="auto">
               تلقائي ({roles.vision?.model || "Auto"})
@@ -235,7 +235,7 @@ export default function VisionDocTool() {
           </select>
         </div>
 
-        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/[0.08] bg-[#171717]/70 px-3 py-2.5 text-xs text-zinc-300">
+        <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/[0.08] bg-[#0b0b0e]/75 px-3 py-2.5 text-xs text-zinc-300">
           <input
             type="checkbox"
             checked={useTwoStageOcr}
@@ -253,13 +253,13 @@ export default function VisionDocTool() {
           rows={3}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-[#171717] p-3 text-xs leading-6 text-zinc-100 focus:border-[#d97757]/60 focus:outline-none"
+          className="w-full rounded-xl border border-white/10 bg-[#0b0b0e] p-3 text-xs leading-6 text-zinc-100 focus:border-[#d97757]/60 focus:outline-none"
         />
 
         <button
           onClick={handleAnalyze}
           disabled={!imageUrl || loading}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-white py-2.5 text-xs font-semibold text-[#171717] transition hover:bg-zinc-200 disabled:opacity-40"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-l from-[#d97757] to-[#e48667] py-2.5 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-40"
         >
           {loading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -270,12 +270,12 @@ export default function VisionDocTool() {
         </button>
       </div>
 
-      <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-[#2a2a2a]/60 p-5">
+      <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-[#121217]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] p-5">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold text-zinc-200">نتيجة التحليل</h3>
           {meta && (
             <span
-              className="rounded-full bg-[#171717] px-2.5 py-0.5 font-mono text-[11px] text-[#e69274]"
+              className="rounded-full bg-[#0b0b0e] px-2.5 py-0.5 font-mono text-[11px] text-[#e69274]"
               dir="ltr"
             >
               {meta}
@@ -291,7 +291,7 @@ export default function VisionDocTool() {
         )}
 
         {ocrExtract && (
-          <div className="rounded-xl border border-white/10 bg-[#171717] p-3">
+          <div className="rounded-xl border border-white/10 bg-[#0b0b0e] p-3">
             <div className="mb-1 text-[11px] font-semibold text-[#e69274]">
               المرحلة 1 — النص المستخرج (OCR)
             </div>
@@ -301,7 +301,7 @@ export default function VisionDocTool() {
           </div>
         )}
 
-        <div className="min-h-[280px] flex-1 whitespace-pre-wrap rounded-xl border border-white/10 bg-[#171717] p-4 text-sm leading-7 text-zinc-200">
+        <div className="min-h-[280px] flex-1 whitespace-pre-wrap rounded-xl border border-white/10 bg-[#0b0b0e] p-4 text-sm leading-7 text-zinc-200">
           {answer ||
             (loading
               ? "جاري تحليل الصورة..."
